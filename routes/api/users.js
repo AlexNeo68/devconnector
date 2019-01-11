@@ -21,13 +21,18 @@ router.get("/test", (req, res) => {
 // @desc    Register users
 // @access  Public
 router.post("/register", (req, res) => {
-  const { isValid, errors } = validateRegisterInput(req.body);
+  const {
+    isValid,
+    errors
+  } = validateRegisterInput(req.body);
   if (!isValid) return res.status(400).json(errors);
 
-  User.findOne({ email: req.body.email })
+  User.findOne({
+      email: req.body.email
+    })
     .then(user => {
       if (user) {
-        errors.userexist = "Uset with sented email already exist in database";
+        errors.email = "User with sented email already exist in database";
         return res.status(400).json(errors);
       }
       const avatar = gravatar.url(req.body.email, {
@@ -42,8 +47,8 @@ router.post("/register", (req, res) => {
         password: req.body.password,
         avatar
       });
-      bcrypt.genSalt(10, function(err, salt) {
-        bcrypt.hash(req.body.password, salt, function(err, hash) {
+      bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(req.body.password, salt, function (err, hash) {
           if (err) res.status(400).json(err);
           newUser.password = hash;
           newUser
@@ -60,10 +65,15 @@ router.post("/register", (req, res) => {
 // @desc    Login users
 // @access  Public
 router.post("/login", (req, res) => {
-  const { isValid, errors } = validateLoginInput(req.body);
+  const {
+    isValid,
+    errors
+  } = validateLoginInput(req.body);
   if (!isValid) return res.status(400).json(errors);
 
-  User.findOne({ email: req.body.email })
+  User.findOne({
+      email: req.body.email
+    })
     .then(user => {
       if (!user) {
         errors.nofound = "User not found";
@@ -83,14 +93,18 @@ router.post("/login", (req, res) => {
         };
         jwt.sign(
           payload,
-          keys.secretOnKey,
-          { expiresIn: 36000 },
+          keys.secretOnKey, {
+            expiresIn: 36000
+          },
           (err, token) => {
             if (err) {
               errors.sign = err;
               res.status(400).json(errors);
             }
-            res.json({ success: true, token: "Bearer " + token });
+            res.json({
+              success: true,
+              token: "Bearer " + token
+            });
           }
         );
       });
@@ -106,7 +120,9 @@ router.post("/login", (req, res) => {
 // @access  Private
 router.get(
   "/current",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", {
+    session: false
+  }),
   (req, res) => {
     User.findById(req.user.id)
       .then(user => res.json(user))

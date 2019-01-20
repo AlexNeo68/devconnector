@@ -18,7 +18,10 @@ const validateExperienceInput = ({
   status = !isEmpty(status) ? status : "";
   skills = !isEmpty(skills) ? skills : "";
 
-  if (!Validator.isLength(handle, { min: 3, max: 30 })) {
+  if (!Validator.isLength(handle, {
+      min: 3,
+      max: 30
+    })) {
     errors.handle = "Handle must be between 3 and 30 characters";
   }
 

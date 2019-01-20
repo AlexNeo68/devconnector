@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
   const errors = {};
   Post.find()
     .sort({
-      data: -1
+      date: -1
     })
     .then(posts => {
       res.json(posts);
@@ -56,12 +56,15 @@ router.post(
     session: false
   }),
   (req, res) => {
-    const { isValid, errors } = validatePostInput(req.body);
+    const {
+      isValid,
+      errors
+    } = validatePostInput(req.body);
     if (!isValid) return res.status(400).json(errors);
 
     Profile.findOne({
-      user: req.user.id
-    })
+        user: req.user.id
+      })
       .then(profile => {
         if (!profile) {
           errors = "Profile not found";
@@ -99,8 +102,8 @@ router.post(
   (req, res) => {
     const errors = {};
     Profile.findOne({
-      user: req.user.id
-    })
+        user: req.user.id
+      })
       .then(profile => {
         if (!profile) {
           errors = "Profile not found";
@@ -114,7 +117,7 @@ router.post(
             }
             if (
               post.likes.filter(like => like.user.toString() === req.user.id)
-                .length > 0
+              .length > 0
             ) {
               errors.likedyet = "Current user already liked this post";
               return res.status(400).json(errors);
@@ -153,8 +156,8 @@ router.post(
   (req, res) => {
     const errors = {};
     Profile.findOne({
-      user: req.user.id
-    })
+        user: req.user.id
+      })
       .then(profile => {
         if (!profile) {
           errors = "Profile not found";
@@ -168,7 +171,7 @@ router.post(
             }
             if (
               post.likes.filter(like => like.user.toString() === req.user.id)
-                .length === 0
+              .length === 0
             ) {
               errors.likednot = "Current user not liked this post";
               return res.status(400).json(errors);
@@ -210,12 +213,15 @@ router.post(
     session: false
   }),
   (req, res) => {
-    const { isValid, errors } = validatePostInput(req.body);
+    const {
+      isValid,
+      errors
+    } = validatePostInput(req.body);
     if (!isValid) return res.status(400).json(errors);
 
     Profile.findOne({
-      user: req.user.id
-    })
+        user: req.user.id
+      })
       .then(profile => {
         if (!profile) {
           errors = "Profile not found";
@@ -267,8 +273,8 @@ router.delete(
   (req, res) => {
     const errors = {};
     Profile.findOne({
-      user: req.user.id
-    })
+        user: req.user.id
+      })
       .then(profile => {
         if (!profile) {
           errors = "Profile not found";
@@ -327,8 +333,8 @@ router.delete(
   (req, res) => {
     const errors = {};
     Profile.findOne({
-      user: req.user.id
-    })
+        user: req.user.id
+      })
       .then(profile => {
         if (!profile) {
           errors = "Profile not found";

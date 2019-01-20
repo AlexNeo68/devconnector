@@ -39,7 +39,8 @@ class ProfileHeader extends Component {
                   </a>
                 ) : null}
 
-                {!isEmpty(profile.social.twitter) ? (
+                {!isEmpty(profile.social) &&
+                !isEmpty(profile.social.twitter) ? (
                   <a
                     className="text-white p-2"
                     href={profile.social.twitter}
@@ -50,7 +51,8 @@ class ProfileHeader extends Component {
                   </a>
                 ) : null}
 
-                {!isEmpty(profile.social.facebook) ? (
+                {!isEmpty(profile.social) &&
+                !isEmpty(profile.social.facebook) ? (
                   <a
                     className="text-white p-2"
                     href={profile.social.facebook}
@@ -60,7 +62,8 @@ class ProfileHeader extends Component {
                     <i className="fas fa-facebook fa-2x" />
                   </a>
                 ) : null}
-                {!isEmpty(profile.social.linkedin) ? (
+                {!isEmpty(profile.social) &&
+                !isEmpty(profile.social.linkedin) ? (
                   <a
                     className="text-white p-2"
                     href={profile.social.linkedin}
@@ -70,7 +73,8 @@ class ProfileHeader extends Component {
                     <i className="fas fa-linkedin fa-2x" />
                   </a>
                 ) : null}
-                {!isEmpty(profile.social.instagram) ? (
+                {!isEmpty(profile.social) &&
+                !isEmpty(profile.social.instagram) ? (
                   <a
                     className="text-white p-2"
                     href={profile.social.instagram}
@@ -80,7 +84,8 @@ class ProfileHeader extends Component {
                     <i className="fas fa-instagram fa-2x" />
                   </a>
                 ) : null}
-                {!isEmpty(profile.social.youtube) ? (
+                {!isEmpty(profile.social) &&
+                !isEmpty(profile.social.youtube) ? (
                   <a
                     className="text-white p-2"
                     href={profile.social.youtube}

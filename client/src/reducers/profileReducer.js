@@ -7,7 +7,7 @@ import {
 
 const initialState = {
   profiles: null,
-  profile: null,
+  profile: {},
   loading: false
 }
 

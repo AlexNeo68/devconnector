@@ -28,7 +28,7 @@ class Profile extends Component {
 
     let profileContent;
 
-    if (profile === null || loading) {
+    if (Object.keys(profile).length === 0 || profile === null || loading) {
       profileContent = <Spinner />;
     } else {
       profileContent = (
